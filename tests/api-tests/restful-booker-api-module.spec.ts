@@ -42,30 +42,7 @@ test.skip("Id - 3 - [Restful-Booker > Booking] Verify that the user is able to C
     expect(createBookingJsonResp.booking).toMatchObject(restfulApiData.create_booking)
 })
 
-
-// test.skip("Id - 4 - [Restful-Booker > Booking] Verify that the user is able to Update existing booking using Put API and receive valid response.", {
-//     tag:['@API','@UAT']
-// }, async({request, commonApiUtils})=>{
-//     const tokenValue = await commonApiUtils.createToken();
-//     const updateBookingResp = await request.put(`${apiPathData.booking_path}/${restfulApiData.booking_id2}`,{
-//         headers:{
-//             Cookie: `token=${tokenValue}`
-//         },
-//         data:restfulApiData.update_booking
-//     });
-//     const updateBookingJsonResp = await updateBookingResp.json();
-//     console.log(updateBookingJsonResp);
-//     expect(updateBookingResp.status()).toBe(200);
-//     expect(updateBookingJsonResp).toMatchObject(restfulApiData.update_booking)
-// })
-
-
-
-
-//---------------------------------------------------------------------------------------------------------------------------------------
-//  ---- *** Above and below test are same, only below we are using beforeAll hook so that it will be applicable for all other tests ---- gemini ai code --//
-//---------------------------------------------------------------------------------------------------------------------------------------
- let tokenValue: string; // Declare a variable to store the token globally within this file
+let tokenValue: string; 
 
 test.beforeAll(async ({ commonApiUtils }) => {
     // Generate the token once before any tests run
@@ -130,7 +107,3 @@ test('Id - 6 - [Restful-Booker > Booking] Verify that the user is able to delete
 
 
 
-// npx run test_demo_api
-
-
-// $env:SECRET_KEY="wishinfinite"; npm run test_demo_api      -  this requires to run 4th test

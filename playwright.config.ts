@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
-import path from 'path';
+//import path from 'path';
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -9,9 +9,9 @@ import path from 'path';
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
-// dotenv.config({
-//     path: process.env.ENV_NAME ? `./env-files/.env.${process.env.ENV_NAME}` : `./env-files/.env.demo`
-// })
+dotenv.config({
+    path: process.env.ENV_NAME ? `./env-files/.env.${process.env.ENV_NAME}` : `./env-files/.env.demo`
+})
 
 
 /**
@@ -19,13 +19,13 @@ import path from 'path';
  * This logic first checks if we are in CI. If NOT in CI, it loads local files.
  * If in CI, it relies on the environment variables already injected by GitHub.
  */
-if (!process.env.CI) {
-  dotenv.config({
-    path: process.env.ENV_NAME 
-      ? path.resolve(__dirname, 'env-files', `.env.${process.env.ENV_NAME}`) 
-      : path.resolve(__dirname, 'env-files', '.env.demo')
-  });
-}
+// if (!process.env.CI) {
+//   dotenv.config({
+//     path: process.env.ENV_NAME 
+//       ? path.resolve(__dirname, 'env-files', `.env.${process.env.ENV_NAME}`) 
+//       : path.resolve(__dirname, 'env-files', '.env.demo')
+//   });
+// }
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -45,9 +45,9 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [['html',{open:'always'}]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  timeout:90000,                          // test and expect timeout added by harinam
+  timeout:30000,                          // test and expect timeout added by harinam
   expect: {
-    timeout:30000,
+    timeout:5000,
   },
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */

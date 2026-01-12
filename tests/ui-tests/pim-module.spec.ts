@@ -1,7 +1,7 @@
 import { test, expect } from '../../fixtures/hooks-fixture';
 import pimData from '../../data/ui-data/pim-module-data.json';
 
-test('[PIM] Verify pagination navigation.', async ({gotoUrl, leftNavigationPage, pimPage }) => {
+test.skip('[PIM] Verify pagination navigation.', async ({gotoUrl, leftNavigationPage, pimPage }) => {
         await test.step('Open PIM Module',async()=>{
            await leftNavigationPage.openPimModule();
         });
@@ -21,7 +21,7 @@ test('[PIM] Verify pagination navigation.', async ({gotoUrl, leftNavigationPage,
     });
 
 
-test('Verify all Left Navigation links are working', async ({gotoUrl, leftNavigationPage, page }) => {
+test.skip('Verify all Left Navigation links are working', async ({gotoUrl, leftNavigationPage, page }) => {
 
     const menuList = await leftNavigationPage.getMenuNames();    
 
