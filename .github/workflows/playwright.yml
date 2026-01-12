@@ -40,7 +40,15 @@ jobs:
 
     # 4. Run tests injecting SECRET_KEY
     - name: Run Playwright tests
-      run: npx playwright test
+      run: |
+        echo "Checking if SECRET_KEY is available to the shell..."
+        if [ -z "$SECRET_KEY" ]; then 
+          echo "::error::SECRET_KEY is MISSING in GitHub Environment!"
+          exit 1
+        else 
+          echo "SECRET_KEY is present."
+        fi
+        npx playwright test
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
