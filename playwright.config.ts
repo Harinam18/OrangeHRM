@@ -17,6 +17,8 @@ dotenv.config({
  */
 export default defineConfig({
   testDir: './tests/ui-tests',
+  // exclude api-tests ONLY when running in CI               
+   testIgnore: process.env.CI ? '**/api-tests/**' : undefined,
   /* Run tests in files in parallel */
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -44,6 +46,7 @@ export default defineConfig({
   //   },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    //headless: true,
     trace: 'on-first-retry',
     video:'off',
     screenshot:'off'
