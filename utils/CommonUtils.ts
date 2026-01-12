@@ -43,9 +43,5 @@ export default class CommonUtils {
 
 
 
-// SECRET_KEY=wishinfinite npm run test_demo_cr_hl   --   // this is bash command
 
-// $env:SECRET_KEY="wishinfinite"; npm run test_demo_cr_hd  --  // this is powershell command
-
-// $env:SECRET_KEY="wishinfinite"; npm run test_demo_ui
 
