@@ -1,0 +1,33 @@
+{
+  "content_type":"application/json; charset=utf-8",
+  "booking_id": "30",
+  "booking_id2": "711",
+  "booking_id3": "771",
+  "firstname": "John",
+  "create_booking":{
+    "firstname" : "Wish",
+    "lastname" : "Infinite",
+    "totalprice" : 111,
+    "depositpaid" : true,
+    "bookingdates" : {
+        "checkin" : "2018-01-01",
+        "checkout" : "2019-01-01"
+    },
+    "additionalneeds" : "Breakfast"
+    },
+    "update_booking":{
+    "firstname" : "Booket T",
+    "lastname" : "George",
+    "totalprice" : 444,
+    "depositpaid" : true,
+    "bookingdates" : {
+        "checkin" : "2018-01-05",
+        "checkout" : "2019-01-05"
+    },
+    "additionalneeds" : "Championship Belt"
+    },
+    "update_partial_booking": {
+    "firstname" : "wish",
+    "lastname" : "Infinite"
+    }
+}
