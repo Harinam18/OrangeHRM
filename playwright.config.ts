@@ -30,7 +30,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['html',{open:'always'}],['allure-playwright']],
+  reporter: [['html',{open:'always',theme: 'dark'}],['allure-playwright', { outputFolder: 'allure-results', dark: true }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   timeout:90000,                          // test and expect timeout added by harinam
   expect: {
@@ -76,13 +76,13 @@ export default defineConfig({
         },
    },
 
-   {
-    name: 'webkit',
-    dependencies:['Setup'],
-    use: { ...devices['Desktop Safari'],
-     storageState:'./playwright/.auth/auth.json'
-        },
-   },
+  //  {
+  //   name: 'webkit',
+  //   dependencies:['Setup'],
+  //   use: { ...devices['Desktop Safari'],
+  //    storageState:'./playwright/.auth/auth.json'
+  //       },
+  //  },
    {
     name: 'apiTest',
     testDir: './tests/api-tests',

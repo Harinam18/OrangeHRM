@@ -12,32 +12,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. Checkout code
+    # Checkout code
     - uses: actions/checkout@v4
 
-    # 2. Setup Node
+    # Setup Node
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
 
-    # 3. Install project dependencies
+    # Install project dependencies
     - name: Install dependencies
       run: npm ci
 
-    # 4. Install Linux dependencies required for WebKit
-    - name: Install WebKit dependencies
-      if: runner.os == 'Linux'
-      run: sudo apt-get update && sudo apt-get install -y \
-        libwoff1 libwoff2-1 libwoff2dec1 libwoff2dec0 libx11-xcb1 \
-        libxcomposite1 libxcursor1 libxdamage1 libxext6 libxi6 libxinerama1 \
-        libxrandr2 libxss1 libxtst6 libnss3 libatk-bridge2.0-0 libgtk-3-0 \
-        libcups2 libxshmfence1 libxkbcommon0 libdbus-1-3 libgbm1 libasound2 libdrm2
-
-    # 5. Get Playwright version for cache key
+    # Get Playwright version for cache key
     - name: Get Playwright version
       run: echo "PLAYWRIGHT_VERSION=$(npm ls @playwright/test --json | jq -r '.dependencies[\"@playwright/test\"].version')" >> $GITHUB_ENV
 
-    # 6. Restore Playwright browser cache
+    # Restore Playwright browser cache
     - name: Cache Playwright browsers
       uses: actions/cache@v4
       id: playwright-cache
@@ -47,12 +38,12 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-playwright-
 
-    # 7. Install Playwright browsers if cache missed
+    # Install Playwright browsers if cache missed
     - name: Install Playwright Browsers
       if: steps.playwright-cache.outputs.cache-hit != 'true'
       run: npx playwright install --with-deps
 
-    # 8. Run Playwright tests with required secrets
+    # Run Playwright tests with required secrets
     - name: Run Playwright tests
       run: |
         echo "Validating required environment variables..."
@@ -73,11 +64,17 @@ jobs:
         API_USER_NAME: ${{ secrets.API_USER_NAME }}
         API_PASSWORD: ${{ secrets.API_PASSWORD }}
 
-    # 9. Generate Allure report
+    
+    # Generate Allure environment.properties
+    - name: Generate Allure environment
+      run: |
+        node -e "require('./utils/commonUtils').default.prototype.generateAllureEnvironment()"
+
+    # Generate Allure report
     - name: Generate Allure report
       run: npx allure generate allure-results --clean -o allure-report    
 
-    # 10. Upload Allure report
+    # Upload Allure report
     - name: Upload Allure report
       uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
@@ -86,7 +83,7 @@ jobs:
         path: allure-report/
         retention-days: 30
     
-    # 11. Upload Playwright HTML report
+    # Upload Playwright HTML report
     - name: Upload Playwright HTML report
       uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
