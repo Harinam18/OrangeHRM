@@ -61,6 +61,10 @@ jobs:
         API_USER_NAME: ${{ secrets.API_USER_NAME }}
         API_PASSWORD: ${{ secrets.API_PASSWORD }}
 
+    # 5. Generate the Allure report from results folder
+    - name: Generate Allure report
+      run: npx allure generate allure-results --clean -o allure-report    
+
     - name: Upload Playwright HTML report
       uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
