@@ -42,26 +42,11 @@ export default class CommonUtils {
     }
 
 
-          /**
-   * Add Allure metadata dynamically for a test
-   * @param testInfo Playwright TestInfo object
-   * @param featureName Feature name (module)
-   * @param storyName Story name (sub-module or scenario)
-   */
-//   addAllureMetadata(testInfo: TestInfo, featureName: string, storyName: string) {
-//     testInfo.annotations.push({ type: 'feature', description: featureName });
-//     testInfo.annotations.push({ type: 'story', description: storyName });
-//     testInfo.annotations.push({ type: 'owner', description: process.env.USER || process.env.USERNAME || 'Unknown' });
-//     testInfo.annotations.push({ type: 'environment', description: process.env.ENV_NAME || 'QA' });
-//     testInfo.annotations.push({ type: 'browser', description: testInfo.project.name });
-//     testInfo.annotations.push({ type: 'os', description: process.platform });
-//   }
-
  /**
      * Generate allure environment.properties globally
      * Call this once at the start of your test run (e.g., in globalSetup or beforeAll)
      */
-    generateAllureEnvironment(testInfo: TestInfo) {
+    generateAllureEnvironment() {
     const resultsPath = path.resolve('allure-results');
 
     if (!fs.existsSync(resultsPath)) {

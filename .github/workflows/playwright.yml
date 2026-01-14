@@ -65,10 +65,8 @@ jobs:
         API_PASSWORD: ${{ secrets.API_PASSWORD }}
 
     
-    # Generate Allure environment.properties
-    - name: Generate Allure environment
-      run: |
-        node -e "require('./utils/commonUtils').default.prototype.generateAllureEnvironment()"
+    - name: Clean Allure results
+      run: rm -rf allure-results allure-report
 
     # Generate Allure report
     - name: Generate Allure report

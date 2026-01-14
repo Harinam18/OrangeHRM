@@ -14,7 +14,7 @@ test('Global Setup for Auto Login', async ({
   commonUtils,
  }, testInfo) => {
 
-  commonUtils.generateAllureEnvironment(testInfo);
+  commonUtils.generateAllureEnvironment();
 
   //ENV VALIDATION 
   const requiredEnvVars = [
