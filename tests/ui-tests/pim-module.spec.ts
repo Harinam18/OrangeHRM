@@ -9,12 +9,13 @@ test('[PIM] Verify pagination navigation.', async ({gotoUrl, leftNavigationPage,
         const firstPageEmployee = await pimPage.employeeListRows.first().innerText();
 
         await test.step('Navigating to next page',async()=>{
-            console.log(firstPageEmployee);
+            console.log('firstPageEmployee: ',firstPageEmployee);
             await pimPage.navigateToNextPage();           
         });
 
         await test.step('Verify change in employee list',async()=>{
            const secondPageEmployee = await pimPage.employeeListRows.first().innerText();
+           console.log('secondPageEmployee: ',secondPageEmployee);
            expect(firstPageEmployee).not.toEqual(secondPageEmployee);
         });
        
