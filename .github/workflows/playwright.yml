@@ -1,4 +1,5 @@
 name: Playwright Tests
+
 on:
   push:
     branches: [ main, master ]
@@ -9,6 +10,7 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v4
 
@@ -21,7 +23,7 @@ jobs:
 
     # 1. Dynamically get Playwright version from package.json for the cache key
     - name: Get Playwright version
-      run: echo "PLAYWRIGHT_VERSION=$(npm ls @playwright/test --json | jq -r '.dependencies["@playwright/test"].version')" >> $GITHUB_ENV
+      run: echo "PLAYWRIGHT_VERSION=$(npm ls @playwright/test --json | jq -r '.dependencies[\"@playwright/test\"].version')" >> $GITHUB_ENV
 
     # 2. Attempt to restore browsers from the cache
     - name: Cache Playwright browsers
@@ -38,19 +40,26 @@ jobs:
       if: steps.playwright-cache.outputs.cache-hit != 'true'
       run: npx playwright install --with-deps
 
-    # 4. Run tests injecting SECRET_KEY
+    # 4. Run Playwright tests with ALL required secrets
     - name: Run Playwright tests
       run: |
-        echo "Checking if SECRET_KEY is available to the shell..."
-        if [ -z "$SECRET_KEY" ]; then 
-          echo "::error::SECRET_KEY is MISSING in GitHub Environment!"
-          exit 1
-        else 
-          echo "SECRET_KEY is present."
-        fi
+        echo "Validating required environment variables..."
+        for var in SECRET_KEY BASE_URL USER_NAME PASSWORD API_BASE_URL API_USER_NAME API_PASSWORD; do
+          if [ -z "${!var}" ]; then
+            echo "::error::$var is замен missing in GitHub Secrets"
+            exit 1
+          fi
+        done
+        echo "All required environment variables are present."
         npx playwright test
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        BASE_URL: ${{ secrets.BASE_URL }}
+        USER_NAME: ${{ secrets.USER_NAME }}
+        PASSWORD: ${{ secrets.PASSWORD }}
+        API_BASE_URL: ${{ secrets.API_BASE_URL }}
+        API_USER_NAME: ${{ secrets.API_USER_NAME }}
+        API_PASSWORD: ${{ secrets.API_PASSWORD }}
 
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}

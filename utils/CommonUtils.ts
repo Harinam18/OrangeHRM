@@ -1,6 +1,5 @@
 import cryptoJs from 'crypto-js';
-// import * as dotenv from 'dotenv'; 
-// dotenv.config();                           //this line to force load environment variables
+
 
 export default class CommonUtils {
 

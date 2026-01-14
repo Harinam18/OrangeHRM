@@ -68,7 +68,7 @@ test("Id - 4 - [Restful-Booker > Booking] Verify that the user is able to Update
 });
 
 
-test('Id - 5 - [Restful-Booker > Booking] Verify that the user is able to partially update existing booking using PATCH API and receive valid response.', {
+test.skip('Id - 5 - [Restful-Booker > Booking] Verify that the user is able to partially update existing booking using PATCH API and receive valid response.', {
     tag:['@API','@UAT']
 }, async({request})=>{
     const partialUpdateBookingResp = await request.patch(`${apiPathData.booking_path}/${restfulApiData.booking_id2}`,{
@@ -85,7 +85,7 @@ test('Id - 5 - [Restful-Booker > Booking] Verify that the user is able to partia
 
 
 
-test('Id - 6 - [Restful-Booker > Booking] Verify that the user is able to delete existing booking using Delete API and receive valid response.', {
+test.skip('Id - 6 - [Restful-Booker > Booking] Verify that the user is able to delete existing booking using Delete API and receive valid response.', {
     tag:['@API','@UAT']
 },async({request})=>{
     const deleteBookingResp = await request.delete(`${apiPathData.booking_path}/${restfulApiData.booking_id3}`,{

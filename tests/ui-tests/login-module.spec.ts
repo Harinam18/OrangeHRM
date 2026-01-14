@@ -3,7 +3,7 @@ import loginModuleData from '../../data/ui-data/login-module-data.json';
 
 test.use({ storageState: { cookies: [], origins: [] } }); 
 
-test.skip('[Login] Verify that the user cannot log in with an invalid password.',{
+test('[Login] Verify that the user cannot log in with an invalid password.',{
   tag:['@UI','@UAT']
 }, async ({ gotoUrl, loginPage, commonUtils }) => {
         await test.step('Login with Valid username and Invalid password',async()=>{
@@ -18,7 +18,7 @@ test.skip('[Login] Verify that the user cannot log in with an invalid password.'
 })
 
 
-test.describe.skip('Invalid login test',{
+test.describe('Invalid login test',{
   tag:'@InvalidLogin'
 },()=>{
     test('[Login] Verify that the user cannot log in with an invalid username.',{

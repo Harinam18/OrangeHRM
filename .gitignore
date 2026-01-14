@@ -22,3 +22,8 @@ Thumbs.db
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Allure test output folders
+allure-results/
+allure-report/
+

@@ -12,9 +12,9 @@
     "test_demo_fr_hl": "cross-env ENV_NAME=demo npx playwright test --project=firefox",
     "test_demo_ui": "cross-env ENV_NAME=demo npx playwright test --ui",
     "test_uat_cr_hd": "cross-env ENV_NAME=demo npx playwright test --project=chromium --grep=@UAT",
-    "test_demo_vi_cr_hd" : "cross-env ENV_NAME=demo npx playwright test --project=chromium --grep=@VISUAL",
-    "test_demo_lf_cr_hd" : "cross-env ENV_NAME=demo npx playwright test --project=chromium --last-failed --headed",
-    "test_demo_api" : "cross-env ENV_NAME=demo npx playwright test --project=apiTest",
+    "test_demo_vi_cr_hd": "cross-env ENV_NAME=demo npx playwright test --project=chromium --grep=@VISUAL",
+    "test_demo_lf_cr_hd": "cross-env ENV_NAME=demo npx playwright test --project=chromium --last-failed --headed",
+    "test_demo_api": "cross-env ENV_NAME=demo npx playwright test --project=apiTest",
     "test_demo_ui_cr_hd_api": "cross-env ENV_NAME=demo npx playwright test --project=chromium --headed --project=apiTest"
   },
   "keywords": [],
@@ -24,7 +24,8 @@
   "devDependencies": {
     "@playwright/test": "^1.57.0",
     "@types/crypto-js": "^4.2.2",
-    "@types/node": "^25.0.3"
+    "@types/node": "^25.0.3",
+    "allure-playwright": "^3.4.4"
   },
   "dependencies": {
     "cross-env": "^10.1.0",
