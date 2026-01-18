@@ -1,7 +1,6 @@
 import cryptoJs from 'crypto-js';
 import fs from 'fs';
 import path from 'path';
-import { TestInfo } from '@playwright/test';
 
 export default class CommonUtils {
 

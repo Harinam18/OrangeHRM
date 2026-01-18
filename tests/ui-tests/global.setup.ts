@@ -12,7 +12,7 @@ test('Global Setup for Auto Login', async ({
   loginPage,
   dashboardPage,
   commonUtils,
- }, testInfo) => {
+ }) => {
 
   commonUtils.generateAllureEnvironment();
 

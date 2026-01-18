@@ -30,7 +30,17 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['html',{open:'always',theme: 'dark'}],['allure-playwright', { outputFolder: 'allure-results', dark: true }]],
+reporter: [
+  ['html', { 
+    // Only 'always' open locally; in CI, just generate the files
+    open: process.env.CI ? 'never' : 'always', 
+    theme: 'dark' 
+  }],
+  ['allure-playwright', { 
+    outputFolder: 'allure-results', 
+    dark: true 
+  }]
+],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   timeout:90000,                          // test and expect timeout added by harinam
   expect: {
