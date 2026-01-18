@@ -27,7 +27,7 @@ jobs:
             -e API_BASE_URL \
             -e API_USER_NAME \
             -e API_PASSWORD \
-            mcr.microsoft.com/playwright:v1.41.2-jammy \
+            mcr.microsoft.com/playwright:v1.57.0-jammy \
             bash -c "npm ci && npx playwright test"
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}

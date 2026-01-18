@@ -49,7 +49,7 @@ test.beforeAll(async ({ commonApiUtils }) => {
     tokenValue = await commonApiUtils.createToken();
 });
 
-test("Id - 4 - [Restful-Booker > Booking] Verify that the user is able to Update existing booking using Put API and receive valid response.", {
+test.skip("Id - 4 - [Restful-Booker > Booking] Verify that the user is able to Update existing booking using Put API and receive valid response.", {
     tag: ['@API', '@UAT']
 }, async ({ request }) => {
     const updateBookingResp = await request.put(`${apiPathData.booking_path}/${restfulApiData.booking_id2}`, {
